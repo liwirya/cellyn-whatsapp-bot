@@ -118,7 +118,8 @@ class Connect {
 					return null;
 				}
 			},
-			browser: Browsers.macOS("Safari"),
+			// PERBAIKAN 1: Gunakan Chrome/Ubuntu agar server WA tidak menolak Pairing Code
+			browser: Browsers.ubuntu("Chrome"),
 			syncFullHistory: false,
 			generateHighQualityLinkPreview: true,
 			qrTimeout: usePairingCode ? undefined : 60000,
@@ -126,18 +127,40 @@ class Connect {
 			msgRetryCounterCache,
 		});
 
+		// PERBAIKAN 2: Pindahkan requestPairingCode ke luar dari event connection.update
+		if (usePairingCode && !state.creds.registered) {
+			const phoneNumber = botNumber.replace(/[^0-9]/g, ""); // Pastikan hanya angka
+			
+			setTimeout(async () => {
+				try {
+					const code = await this.sock.requestPairingCode(phoneNumber);
+					print.info(`Your Pairing Code: ${code}`);
+					print.info(
+						"Enter this code on your WhatsApp phone: Settings -> Linked Devices -> Link a Device -> Link with phone number instead."
+					);
+				} catch (e) {
+					print.error("Failed to request pairing code:", e);
+				}
+			}, 3000); // 3 detik cukup setelah inisialisasi socket
+		}
+
 		this.sock = Client({ sock: this.sock, store: this.store });
 		this.pluginManager.scheduleAllPeriodicTasks(this.sock);
+		
 		this.sock.ev.on("creds.update", saveCreds);
+		
 		this.sock.ev.on("contacts.update", (update) => {
 			this.store.updateContacts(update);
 		});
+		
 		this.sock.ev.on("contacts.upsert", (update) => {
 			this.store.upsertContacts(update);
 		});
+		
 		this.sock.ev.on("groups.update", (updates) => {
 			this.store.updateGroupMetadata(updates);
 		});
+		
 		this.sock.ev.on("connection.update", async (update) => {
 			const { connection, lastDisconnect, qr } = update;
 
@@ -148,33 +171,7 @@ class Connect {
 				);
 			}
 
-			if (
-				usePairingCode &&
-				connection === "connecting" &&
-				!state.creds.registered
-			) {
-				const phoneNumber = botNumber;
-				if (phoneNumber) {
-					setTimeout(async () => {
-						try {
-							const code = await this.sock.requestPairingCode(
-								phoneNumber.trim()
-							);
-							print.info(`Your Pairing Code: ${code}`);
-							print.info(
-								"Enter this code on your WhatsApp phone: Settings -> Linked Devices -> Link a Device -> Link with phone number instead."
-							);
-						} catch (e) {
-							print.error("Failed to request pairing code:", e);
-						}
-					}, 6000);
-				} else {
-					print.error(
-						"No BOT_NUMBER provided for pairing code. Please set BOT_NUMBER in .env and restart the bot."
-					);
-					process.exit(1);
-				}
-			}
+			// PERBAIKAN 3: Blok requestPairingCode dihapus dari sini
 
 			if (connection === "close") {
 				const shouldReconnect =
