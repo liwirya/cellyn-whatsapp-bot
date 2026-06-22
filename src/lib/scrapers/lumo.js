@@ -1,6 +1,6 @@
 import axios from 'axios';
 import crypto from 'crypto';
-import openpgp from 'openpgp';
+import * as openpgp from 'openpgp';
 import http from 'http';
 import https from 'https';
 
