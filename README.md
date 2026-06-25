@@ -15,6 +15,8 @@
 
 </div>
 
+---
+
 ## Overview
 
 Cellyn is a WhatsApp bot built on [Baileys](https://github.com/WhiskeySockets/Baileys) with a modular plugin system, multi-database support, and a clean architecture designed for extensibility.
