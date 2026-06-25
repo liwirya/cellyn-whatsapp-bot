@@ -1,5 +1,5 @@
 {
-  "name": "yuxin",
+  "name": "cellyn",
   "version": "1.0.0",
   "main": "src/main.js",
   "engines": {
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liwirya/yuxin-whatsapp-bot.git"
+    "url": "git+https://github.com/liwirya/cellyn-whatsapp-bot"
   },
-  "author": "Huang Li Wen",
+  "author": "Liwirya",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/liwirya/yuxin-whatsapp-bot/issues"
+    "url": "https://github.com/liwirya/cellyn-whatsapp-bot/issues"
   },
-  "homepage": "https://github.com/liwirya/YuXin#readme",
+  "homepage": "https://github.com/liwirya/cellyn-whatsapp-bot#readme",
   "description": "WhatsApp Bot using Baileys, MongoDB & MySQL.",
   "keywords": [
     "whatsapp-bot",
