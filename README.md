@@ -1,11 +1,22 @@
-[![Banner](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Cellyn&fontSize=90&fontAlignY=38&animation=twinkling&fontColor=fff&desc=WhatsApp+Bot+built+on+Baileys&descSize=16&descAlignY=58)](https://github.com/liwirya/cellyn-whatsapp-bot)
+[![Banner](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,20,30&height=180&section=header&text=Cellyn&fontSize=90&fontAlignY=38&animation=twinkling&fontColor=fff&desc=WhatsApp+Bot+built+on+Baileys&descSize=16&descAlignY=58)](https://github.com/liwirya/cellyn-whatsapp-bot)
 
 <div align="center">
 
-![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js&logoColor=white)
-![Baileys](https://img.shields.io/badge/Baileys-Latest-25D366?style=flat-square&logo=whatsapp&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
-![Stars](https://img.shields.io/github/stars/liwirya/cellyn-whatsapp-bot?style=flat-square&color=yellow)
+![Node.js](https://img.shields.io/badge/Node.js-18+-43A047?style=flat-square&logo=node.js&logoColor=white)
+![Baileys](https://img.shields.io/badge/Baileys-Latest-00BCD4?style=flat-square&logo=whatsapp&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-7E57C2?style=flat-square)
+![Stars](https://img.shields.io/github/stars/liwirya/cellyn-whatsapp-bot?style=flat-square&color=FFA726)
+
+</div>
+
+---
+
+<div align="center">
+
+<!-- Upload video ke repo dulu, lalu uncomment baris ini dan hapus gambar placeholder -->
+<!-- <video src="./assets/preview.mp4" autoplay loop muted playsinline width="600"></video> -->
+
+> **Note:** Upload file `ekqdxm.mp4` ke folder `assets/` di repo ini, lalu hapus baris komentar di atas dan hapus baris `> Note` ini.
 
 </div>
 
@@ -134,6 +145,7 @@ cellyn-whatsapp-bot/
 │   │   ├── owner/           # Owner-only tools
 │   │   └── tools/           # Miscellaneous utilities
 │   └── utils/               # API helpers, converters
+├── assets/                  # Static assets (preview video, etc.)
 ├── .env.example
 ├── ecosystem.config.cjs
 └── package.json
@@ -153,6 +165,8 @@ MIT — see [LICENSE](./LICENSE) for details.
 
 Maintained by [Liwirya](https://github.com/liwirya)
 
-[![Footer](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer)](https://github.com/liwirya/cellyn-whatsapp-bot)
+<br>
+
+[![Footer](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,20,30&height=120&section=footer&text=Thank+You!&fontSize=38&fontColor=ffffff&animation=twinkling&fontAlignY=75)](https://github.com/liwirya/cellyn-whatsapp-bot)
 
 </div>
