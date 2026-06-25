@@ -13,10 +13,7 @@
 
 <div align="center">
 
-<!-- Upload video ke repo dulu, lalu uncomment baris ini dan hapus gambar placeholder -->
-<!-- <video src="./assets/preview.mp4" autoplay loop muted playsinline width="600"></video> -->
-
-> **Note:** Upload file `ekqdxm.mp4` ke folder `assets/` di repo ini, lalu hapus baris komentar di atas dan hapus baris `> Note` ini.
+<video src="./assets/preview.mp4" autoplay loop muted playsinline width="600"></video>
 
 </div>
 
