@@ -27,7 +27,7 @@ Cellyn is a WhatsApp bot built on [Baileys](https://github.com/WhiskeySockets/Ba
 
 ## Requirements
 
-- Node.js 18+
+- Node.js 20+
 - Git
 - FFmpeg
 - MongoDB or MySQL *(optional — Local JSON available)*
