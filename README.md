@@ -13,7 +13,7 @@
 
 <div align="center">
 
-<video src="./assets/preview.mp4" autoplay loop muted playsinline width="600"></video>
+<img src="./assets/preview.gif" width="600" alt="Cellyn Preview" />
 
 </div>
 
