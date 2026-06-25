@@ -9,15 +9,11 @@
 
 </div>
 
----
-
 <div align="center">
 
 <img src="./assets/preview.gif" width="600" alt="Cellyn Preview" />
 
 </div>
-
----
 
 ## Overview
 
