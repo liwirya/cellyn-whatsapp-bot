@@ -74,7 +74,7 @@ export default {
 			if (plugin && !plugin.hidden && (!plugin.owner || isOwner)) {
 				response += `ꕥ Command: *${plugin.name}*\n\n`;
 				response += `• *Description:* ${plugin.description}\n`;
-				response += `• *Aliases:*  \`${plugin.command.join(", ")}\`\n`;
+				response += `• *Aliases:* \`${plugin.command.join(", ")}\`\n`;
 				response += `• *Category:* ${
 					plugin.category.charAt(0).toUpperCase() +
 					plugin.category.slice(1)
@@ -136,22 +136,25 @@ export default {
 			}
 		}
 
-		const pp = "https://telegra.ph/file/7c3ed11c5dd1e2a64bd02.jpg";
-		const thumbnailUrl = await sock
-			.profilePictureUrl(m.sender, "image")
-			.catch(() => pp);
+		let thumbBuffer;
+		try {
+			const res = await fetch("https://img2.pixhost.to/images/9160/747228052_image.jpg");
+			const arrayBuf = await res.arrayBuffer();
+			thumbBuffer = Buffer.from(arrayBuf);
+		} catch (e) {
+			console.error("Gagal fetch thumbnail:", e);
+		}
 
 		await m.reply({
 			text: response.trim(),
 			contextInfo: {
 				externalAdReply: {
-					title: "",
-					body: "@natsumiworld",
+					title: "cellynverse", 
+					body: "@yumeverse",
 					renderLargerThumbnail: true,
-					sourceUrl:
-						"https://whatsapp.com/channel/0029Va8b0s8G3R3jDBfpja0a",
+					sourceUrl: "https://whatsapp.com/channel/0029Va8b0s8G3R3jDBfpja0a",
 					mediaType: 1,
-					thumbnailUrl,
+					thumbnail: thumbBuffer, 
 				},
 				mentionedJid: [m.sender],
 			},
