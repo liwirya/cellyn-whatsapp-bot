@@ -17,7 +17,19 @@
 
 ---
 
+## ✨ What's Cellyn?
+
+**Cellyn** is your friendly neighborhood WhatsApp bot — built on top of [Baileys](https://github.com/WhiskeySockets/Baileys) and designed to be **modular, extensible, and easy to hack on**.
+
+Whether you want a simple auto-reply bot, a full-blown group manager, or a PPOB integration via Digiflazz, Cellyn's got your back. The plugin system is dead simple: drop a file, and it just works.
+
+> 🏗️ **Architecture Note:** Cellyn's project structure is inspired by [Katsumi](https://github.com/nat9h/Katsumi) by [nat9h](https://github.com/nat9h). All documentation, plugins, and modifications here are original work by the Cellyn team.
+
+---
+
 ## 🚀 Getting Started
+
+### Prerequisites
 
 Before we begin, make sure you have:
 
@@ -44,20 +56,20 @@ cp .env.example .env
 ### Running the Bot
 
 ```bash
-# Development mode
+# 🛠️ Development mode
 npm start
 
-# Production mode (with PM2)
+# 🚀 Production mode (with PM2)
 npm install -g pm2
 pm2 start ecosystem.config.cjs
 pm2 save && pm2 startup
 ```
 
-> **tips:** PM2 keeps your bot alive even after crashes or reboots. Highly recommended for production!
+> 💡 **Pro tip:** PM2 keeps your bot alive even after crashes or reboots. Highly recommended for production!
 
 ---
 
-## Configuration
+## ⚙️ Configuration
 
 Here's a quick peek at your `.env`:
 
@@ -80,9 +92,11 @@ DIGIFLAZZ_API_KEY=your_key
 OPENAI_API_KEY=your_key
 ```
 
+> 🔑 **Heads up:** Never commit your `.env` file! It's already in `.gitignore`, but double-check just to be safe.
+
 ---
 
-## Plugin System
+## 🔌 Plugin System
 
 Plugins live in `src/plugins/[category]/[name].js`. Each one is just a plain JavaScript object — no black magic, no steep learning curve.
 
@@ -123,7 +137,7 @@ That's it. Save the file, restart the bot, and `.ping` is ready to go.
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 cellyn-whatsapp-bot/
@@ -156,17 +170,21 @@ cellyn-whatsapp-bot/
 
 ---
 
-## License
+## 🤝 Contributing
+
+We love contributions! Check out [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+## 📜 License
 
 MIT — see [LICENSE](./LICENSE) for the full text.
 
-> **Please don't:** Remove copyright notices or claim this as entirely your own work. Open source thrives on attribution! 🙏
+> ⚠️ **Please don't:** Remove copyright notices or claim this as entirely your own work. Open source thrives on attribution! 🙏
 
 ---
 
 <div align="center">
 
-### Made by [Liwirya](https://github.com/liwirya)
+### Made with ☕ and late-night debugging by [Liwirya](https://github.com/liwirya)
 
 <br>
 
