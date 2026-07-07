@@ -1,4 +1,4 @@
-### 🇮🇩 Bahasa Indonesia
+### 🇮🇩 Indonesia
 
 # Berkontribusi di Cellyn
 
@@ -43,7 +43,7 @@ Biar kode kita tetap rapi dan konsisten:
 
 Sebagai informasi, dengan berkontribusi di sini, kamu setuju bahwa semua kodemu akan dilisensikan di bawah [MIT License](./LICENSE) yang sama dengan proyek ini.
 
-### 🇬🇧 Bahasa Inggris (English Version)
+### 🇬🇧 English 
 
 # Contributing to Cellyn
 
