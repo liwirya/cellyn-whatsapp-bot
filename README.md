@@ -11,7 +11,7 @@
 
 <div align="center">
 
-<img src="./assets/preview.gif" width="600" alt="Cellyn Preview" />
+<img src="./assets/thumb.jpg" width="600" alt="Cellyn Preview" />
 
 </div>
 
