@@ -17,90 +17,70 @@
 
 ---
 
-## ✨ What's Cellyn?
+## Overview
 
-**Cellyn** is your friendly neighborhood WhatsApp bot — built on top of [Baileys](https://github.com/WhiskeySockets/Baileys) and designed to be **modular, extensible, and easy to hack on**.
-
-Whether you want a simple auto-reply bot, a full-blown group manager, or a PPOB integration via Digiflazz, Cellyn's got your back. The plugin system is dead simple: drop a file, and it just works.
-
-> 🏗️ **Architecture Note:** Cellyn's project structure is inspired by [Katsumi](https://github.com/nat9h/Katsumi) by [nat9h](https://github.com/nat9h). All documentation, plugins, and modifications here are original work by the Cellyn team.
+Cellyn is a WhatsApp bot built on [Baileys](https://github.com/WhiskeySockets/Baileys) with a modular plugin system, multi-database support, and a clean architecture designed for extensibility.
 
 ---
 
-## 🚀 Getting Started
+## Requirements
 
-### Prerequisites
+- Node.js 20+
+- Git
+- FFmpeg
+- MongoDB or MySQL *(optional — Local JSON available)*
 
-Before we begin, make sure you have:
+---
 
-- **Node.js 20+** — because we're living in the future
-- **Git** — for cloning (obviously)
-- **FFmpeg** — for all the media magic
-- **MongoDB or MySQL** — *optional*, but recommended for production. Don't worry, Local JSON works fine for small setups.
-
-### Quick Start
+## Installation
 
 ```bash
-# 1. Clone the repo
 git clone https://github.com/liwirya/cellyn-whatsapp-bot.git
 cd cellyn-whatsapp-bot
-
-# 2. Install dependencies
 npm install
-
-# 3. Set up your environment
 cp .env.example .env
-# Edit .env with your favorite editor
 ```
 
-### Running the Bot
+Edit `.env` then start:
 
 ```bash
-# 🛠️ Development mode
+# Development
 npm start
 
-# 🚀 Production mode (with PM2)
+# Production
 npm install -g pm2
 pm2 start ecosystem.config.cjs
 pm2 save && pm2 startup
 ```
 
-> 💡 **Pro tip:** PM2 keeps your bot alive even after crashes or reboots. Highly recommended for production!
-
 ---
 
-## ⚙️ Configuration
-
-Here's a quick peek at your `.env`:
+## Configuration
 
 ```env
-# === Bot Settings ===
+# Bot
 BOT_NAME=Cellyn
 OWNER_NUMBER=628xxxxxxxxxx
 PREFIX=.
 
-# === Database (pick your poison) ===
+# Database (choose one or both)
 MONGODB_URI=mongodb+srv://...
 MYSQL_HOST=localhost
 MYSQL_USER=root
 MYSQL_PASSWORD=password
 MYSQL_DATABASE=cellyn_bot
 
-# === API Keys ===
+# API Keys
 DIGIFLAZZ_USERNAME=your_username
 DIGIFLAZZ_API_KEY=your_key
 OPENAI_API_KEY=your_key
 ```
 
-> 🔑 **Heads up:** Never commit your `.env` file! It's already in `.gitignore`, but double-check just to be safe.
-
 ---
 
-## 🔌 Plugin System
+## Plugin System
 
-Plugins live in `src/plugins/[category]/[name].js`. Each one is just a plain JavaScript object — no black magic, no steep learning curve.
-
-### Minimal Example
+Plugins live in `src/plugins/[category]/[name].js`. Each plugin exports a default object:
 
 ```js
 export default {
@@ -118,26 +98,24 @@ export default {
 };
 ```
 
-That's it. Save the file, restart the bot, and `.ping` is ready to go.
+**Available properties**
 
-### Plugin Properties Cheat Sheet
-
-| Property | Type | What it does |
+| Property | Type | Description |
 |---|---|---|
-| `command` | `string[]` | The triggers that activate this plugin |
-| `permissions` | `string` | Who can use it: `all` / `admin` / `owner` |
-| `cooldown` | `number` | Anti-spam cooldown in seconds |
-| `group` | `boolean` | Only works in group chats |
-| `private` | `boolean` | Only works in private chats |
-| `owner` | `boolean` | Owner-only command |
-| `botAdmin` | `boolean` | Requires bot to be group admin |
-| `react` | `boolean` | Auto-reacts with ✅ when executed |
-| `wait` | `string\|null` | Shows a "please wait" message before running |
-| `dailyLimit` | `number` | Max uses per user per day |
+| `command` | `string[]` | Command triggers |
+| `permissions` | `string` | `all` / `admin` / `owner` |
+| `cooldown` | `number` | Seconds between uses |
+| `group` | `boolean` | Group-only |
+| `private` | `boolean` | Private chat only |
+| `owner` | `boolean` | Owner-only |
+| `botAdmin` | `boolean` | Requires bot admin |
+| `react` | `boolean` | Auto-react on execute |
+| `wait` | `string\|null` | Message shown before executing |
+| `dailyLimit` | `number` | Max uses per day |
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 cellyn-whatsapp-bot/
@@ -153,16 +131,16 @@ cellyn-whatsapp-bot/
 │   │   ├── schema/          # Data validation schemas
 │   │   └── serialize.js     # Message serializer
 │   ├── plugins/
-│   │   ├── ai/              # AI / ChatGPT integrations
-│   │   ├── convert/         # Sticker, audio, video converters
-│   │   ├── digi/            # PPOB — Digiflazz top-up
+│   │   ├── ai/              # AI / ChatGPT
+│   │   ├── convert/         # Sticker, audio, video converter
+│   │   ├── digi/            # PPOB — Digiflazz
 │   │   ├── downloader/      # TikTok, IG, YouTube, Spotify, etc.
-│   │   ├── group/           # Group management tools
+│   │   ├── group/           # Group management
 │   │   ├── info/            # Help, menu, ping
-│   │   ├── owner/           # Owner-only commands
-│   │   └── tools/           # Misc utilities
-│   └── utils/               # API helpers, formatters
-├── assets/                  # Static assets (preview, etc.)
+│   │   ├── owner/           # Owner-only tools
+│   │   └── tools/           # Miscellaneous utilities
+│   └── utils/               # API helpers, converters
+├── assets/                  # Static assets (preview video, etc.)
 ├── .env.example
 ├── ecosystem.config.cjs
 └── package.json
@@ -170,21 +148,17 @@ cellyn-whatsapp-bot/
 
 ---
 
-## 🤝 Contributing
+## License
 
-We love contributions! Check out [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+MIT — see [LICENSE](./LICENSE) for details.
 
-## 📜 License
-
-MIT — see [LICENSE](./LICENSE) for the full text.
-
-> ⚠️ **Please don't:** Remove copyright notices or claim this as entirely your own work. Open source thrives on attribution! 🙏
+> Removing copyright notices or claiming original authorship is not permitted.
 
 ---
 
 <div align="center">
 
-### Made with ☕ and late-night debugging by [Liwirya](https://github.com/liwirya)
+Maintained by [Liwirya](https://github.com/liwirya)
 
 <br>
 
