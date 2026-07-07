@@ -17,70 +17,88 @@
 
 ---
 
-## Overview
+## ✨ What's Cellyn?
 
-Cellyn is a WhatsApp bot built on [Baileys](https://github.com/WhiskeySockets/Baileys) with a modular plugin system, multi-database support, and a clean architecture designed for extensibility.
+**Cellyn** is your friendly neighborhood WhatsApp bot — built on top of [Baileys](https://github.com/WhiskeySockets/Baileys) and designed to be **modular, extensible, and easy to hack on**.
 
----
-
-## Requirements
-
-- Node.js 20+
-- Git
-- FFmpeg
-- MongoDB or MySQL *(optional — Local JSON available)*
+Whether you want a simple auto-reply bot, a full-blown group manager, or a PPOB integration via Digiflazz, Cellyn's got your back. The plugin system is dead simple: drop a file, and it just works.
 
 ---
 
-## Installation
+## 🚀 Getting Started
+
+### Prerequisites
+
+Before we begin, make sure you have:
+
+- **Node.js 20+** — because we're living in the future
+- **Git** — for cloning (obviously)
+- **FFmpeg** — for all the media magic
+- **MongoDB or MySQL** — *optional*, but recommended for production. Don't worry, Local JSON works fine for small setups.
+
+### Quick Start
 
 ```bash
+# 1. Clone the repo
 git clone https://github.com/liwirya/cellyn-whatsapp-bot.git
 cd cellyn-whatsapp-bot
+
+# 2. Install dependencies
 npm install
+
+# 3. Set up your environment
 cp .env.example .env
+# Edit .env with your favorite editor
 ```
 
-Edit `.env` then start:
+### Running the Bot
 
 ```bash
-# Development
+# 🛠️ Development mode
 npm start
 
-# Production
+# 🚀 Production mode (with PM2)
 npm install -g pm2
 pm2 start ecosystem.config.cjs
 pm2 save && pm2 startup
 ```
 
+> 💡 **Pro tip:** PM2 keeps your bot alive even after crashes or reboots. Highly recommended for production!
+
 ---
 
-## Configuration
+## ⚙️ Configuration
+
+Here's a quick peek at your `.env`:
 
 ```env
-# Bot
+# === Bot Settings ===
 BOT_NAME=Cellyn
 OWNER_NUMBER=628xxxxxxxxxx
 PREFIX=.
 
-# Database (choose one or both)
+# === Database (pick your poison) ===
 MONGODB_URI=mongodb+srv://...
 MYSQL_HOST=localhost
 MYSQL_USER=root
 MYSQL_PASSWORD=password
 MYSQL_DATABASE=cellyn_bot
 
-# API Keys
+# === API Keys ===
 DIGIFLAZZ_USERNAME=your_username
 DIGIFLAZZ_API_KEY=your_key
 OPENAI_API_KEY=your_key
 ```
 
+> 🔑 **Heads up:** Never commit your `.env` file! It's already in `.gitignore`, but double-check just to be safe.
+
 ---
 
-## Plugin System
+## 🔌 Plugin System
 
-Plugins live in `src/plugins/[category]/[name].js`. Each plugin exports a default object:
+Plugins live in `src/plugins/[category]/[name].js`. Each one is just a plain JavaScript object — no black magic, no steep learning curve.
+
+### Minimal Example
 
 ```js
 export default {
@@ -98,24 +116,26 @@ export default {
 };
 ```
 
-**Available properties**
+That's it. Save the file, restart the bot, and `.ping` is ready to go.
 
-| Property | Type | Description |
+### Plugin Properties Cheat Sheet
+
+| Property | Type | What it does |
 |---|---|---|
-| `command` | `string[]` | Command triggers |
-| `permissions` | `string` | `all` / `admin` / `owner` |
-| `cooldown` | `number` | Seconds between uses |
-| `group` | `boolean` | Group-only |
-| `private` | `boolean` | Private chat only |
-| `owner` | `boolean` | Owner-only |
-| `botAdmin` | `boolean` | Requires bot admin |
-| `react` | `boolean` | Auto-react on execute |
-| `wait` | `string\|null` | Message shown before executing |
-| `dailyLimit` | `number` | Max uses per day |
+| `command` | `string[]` | The triggers that activate this plugin |
+| `permissions` | `string` | Who can use it: `all` / `admin` / `owner` |
+| `cooldown` | `number` | Anti-spam cooldown in seconds |
+| `group` | `boolean` | Only works in group chats |
+| `private` | `boolean` | Only works in private chats |
+| `owner` | `boolean` | Owner-only command |
+| `botAdmin` | `boolean` | Requires bot to be group admin |
+| `react` | `boolean` | Auto-reacts with ✅ when executed |
+| `wait` | `string\|null` | Shows a "please wait" message before running |
+| `dailyLimit` | `number` | Max uses per user per day |
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 cellyn-whatsapp-bot/
@@ -131,16 +151,16 @@ cellyn-whatsapp-bot/
 │   │   ├── schema/          # Data validation schemas
 │   │   └── serialize.js     # Message serializer
 │   ├── plugins/
-│   │   ├── ai/              # AI / ChatGPT
-│   │   ├── convert/         # Sticker, audio, video converter
-│   │   ├── digi/            # PPOB — Digiflazz
+│   │   ├── ai/              # AI / ChatGPT integrations
+│   │   ├── convert/         # Sticker, audio, video converters
+│   │   ├── digi/            # PPOB — Digiflazz top-up
 │   │   ├── downloader/      # TikTok, IG, YouTube, Spotify, etc.
-│   │   ├── group/           # Group management
+│   │   ├── group/           # Group management tools
 │   │   ├── info/            # Help, menu, ping
-│   │   ├── owner/           # Owner-only tools
-│   │   └── tools/           # Miscellaneous utilities
-│   └── utils/               # API helpers, converters
-├── assets/                  # Static assets (preview video, etc.)
+│   │   ├── owner/           # Owner-only commands
+│   │   └── tools/           # Misc utilities
+│   └── utils/               # API helpers, formatters
+├── assets/                  # Static assets (preview, etc.)
 ├── .env.example
 ├── ecosystem.config.cjs
 └── package.json
@@ -148,17 +168,17 @@ cellyn-whatsapp-bot/
 
 ---
 
-## License
+## 📜 License
 
-MIT — see [LICENSE](./LICENSE) for details.
+MIT — see [LICENSE](./LICENSE) for the full text.
 
-> Removing copyright notices or claiming original authorship is not permitted.
+> ⚠️ **Please don't:** Remove copyright notices or claim this as entirely your own work. Open source thrives on attribution! 🙏
 
 ---
 
 <div align="center">
 
-Maintained by [Liwirya](https://github.com/liwirya)
+### Made with ☕ and late-night debugging by [Liwirya](https://github.com/liwirya)
 
 <br>
 
